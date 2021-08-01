@@ -10,10 +10,24 @@ const TodoApp = () => {
     { id: 3, task: "Wash the dishes", completed: false },
   ];
 
+  const id = Math.floor(Math.random() * 100000);
   const [todos, setTodos] = useState(initialTodos);
   const addTodo = (newTodoText) => {
-    setTodos([...todos, { id: 4, task: newTodoText, completed: false }]);
+    setTodos([...todos, { id: id, task: newTodoText, completed: false }]);
   };
+  const removeTodo = (todoId) => {
+    // filter out remove todos
+    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
+    // call set todos with new todo arry
+    setTodos(updatedTodos);
+  };
+  const toggleTodo = (todoId) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(updatedTodos);
+  };
+
   return (
     <Paper
       style={{
@@ -32,7 +46,11 @@ const TodoApp = () => {
       <Grid container justify="center" style={{ marginTop: "1.2rem" }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodoForm addTodo={addTodo} />
-          <TodoList todos={todos} />
+          <TodoList
+            todos={todos}
+            removeTodo={removeTodo}
+            toggleTodo={toggleTodo}
+          />
         </Grid>
       </Grid>
     </Paper>
