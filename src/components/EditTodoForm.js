@@ -14,6 +14,7 @@ const EditTodoForm = ({ editTodo, id, task, toggleEditForm }) => {
     }}>
     <TextField
       fullWidth
+      autoFocus
       margin="normal"
       label="Type New Todo"
       value={value}

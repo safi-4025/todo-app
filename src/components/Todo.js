@@ -14,7 +14,7 @@ import EditIcon from "@material-ui/icons/Edit";
 const Todo = ({ task, completed, removeTodo, id, toggleTodo, editTodo }) => {
   const [isEditing, toggle] = UseToggleState(false);
   return (
-    <ListItem>
+    <ListItem style={{height: '64px'}}>
       {isEditing ? (
         <EditTodoForm
           editTodo={editTodo}
