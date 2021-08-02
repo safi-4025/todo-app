@@ -1,44 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import useTodoState from "./useTodoState";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import { Typography, Paper, AppBar, Toolbar, Grid } from "@material-ui/core";
 
 const TodoApp = () => {
   const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
-  // const initialTodos = [
-  //   { id: 1, task: "Reading books", completed: false },
-  //   { id: 2, task: "Walking", completed: true },
-  //   { id: 3, task: "Wash the dishes", completed: false },
-  // ];
-
-  const id = Math.floor(Math.random() * 100000);
-  const [todos, setTodos] = useState(initialTodos);
+  const { todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(initialTodos);
 
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = (newTodoText) => {
-    setTodos([...todos, { id: id, task: newTodoText, completed: false }]);
-  };
-  const removeTodo = (todoId) => {
-    // filter out remove todos
-    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-    // call set todos with new todo arry
-    setTodos(updatedTodos);
-  };
-  const toggleTodo = (todoId) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
-    );
-    setTodos(updatedTodos);
-  };
-  const editTodo = (todoId, newTask) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === todoId ? { ...todo, task: newTask } : todo
-    );
-    setTodos(updatedTodos);
-  }
 
   return (
     <Paper
@@ -52,7 +25,7 @@ const TodoApp = () => {
     >
       <AppBar color="primary" position="static" style={{ height: "64px" }}>
         <Toolbar>
-          <Typography color="inherit">TODOS WITH HOCS!</Typography>
+          <Typography color="inherit">TODOS WITH HOOKS!</Typography>
         </Toolbar>
       </AppBar>
       <Grid container justify="center" style={{ marginTop: "1.2rem" }}>
