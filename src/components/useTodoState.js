@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import useLocalStorageState from './useLocalStorageState';
 
 export default initialTodos => {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useLocalStorageState('todos', initialTodos);
   const id = Math.floor(Math.random() * 100000);
 
   return {

@@ -5,7 +5,7 @@ import TodoForm from "./TodoForm";
 import { Typography, Paper, AppBar, Toolbar, Grid } from "@material-ui/core";
 
 const TodoApp = () => {
-  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
+  const initialTodos = [{id: 1, task: 'Reading', completed: false}];
   const { todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(initialTodos);
 
   useEffect(() => {
