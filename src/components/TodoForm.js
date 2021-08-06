@@ -5,13 +5,13 @@ import { Paper, TextField } from "@material-ui/core";
 
 const TodoForm = () => {
   const [value, handleChange, reset] = UseInputState("");
-  const { addTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   return (
     <Paper style={{ margin: "1rem 0", padding: "0 1rem" }}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addTodo(value);
+          dispatch({type: 'ADD', task: value})
           reset();
         }}
       >
