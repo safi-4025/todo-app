@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import UseToggleState from "./UseToggleState";
 import EditTodoForm from "./EditTodoForm";
 import { DispatchContext } from "../context/todosContext";
@@ -48,4 +48,4 @@ const Todo = ({ id, task, completed }) => {
   );
 };
 
-export default Todo;
+export default memo(Todo);
