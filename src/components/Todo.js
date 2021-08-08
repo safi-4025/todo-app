@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import UseToggleState from "./UseToggleState";
 import EditTodoForm from "./EditTodoForm";
-import { TodoContext } from "../context/todosContext";
+import { DispatchContext } from "../context/todosContext";
 import {
   ListItem,
   ListItemText,
@@ -13,7 +13,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
 const Todo = ({ id, task, completed }) => {
-  const { dispatch } = useContext(TodoContext);
+  const dispatch = useContext(DispatchContext);
   const [isEditing, toggle] = UseToggleState(false);
   return (
     <ListItem style={{ height: "64px" }}>
